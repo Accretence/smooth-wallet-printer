@@ -2,7 +2,9 @@ const ethers = require(`ethers`)
 const crypto = require('crypto')
 const fs = require('fs')
 
-const createWallet = () => {
+const dirPath = './export'
+
+function main() {
 	let publicArray = []
 	let privateArray = []
 
@@ -14,21 +16,38 @@ const createWallet = () => {
 		privateArray.push({ privateKey, address })
 		publicArray.push({ address })
 	}
+
 	const publicData = JSON.stringify(publicArray, null, 2)
 	const privateData = JSON.stringify(privateArray, null, 2)
 
 	const dateObject = new Date()
 	const currentTime = dateObject.getTime()
 
-	fs.writeFile(`./export/private_` + currentTime + `.json`, privateData, finished)
-	fs.writeFile(`./export/public_` + currentTime + `.json`, publicData, finished)
+	if (!fs.existsSync(dirPath) && !fs.lstatSync(dirPath).isDirectory()) {
+		fs.mkdir(dirPath, (err) => {
+			if (err) {
+				throw err
+			}
+		})
+	}
+
+	fs.writeFile(
+		dirPath + `/private_` + currentTime + `.json`,
+		privateData,
+		finished
+	)
+	fs.writeFile(
+		dirPath + `/public_` + currentTime + `.json`,
+		publicData,
+		finished
+	)
 }
 
-const finished = (error) => {
+function finished(error) {
 	if (error) {
 		console.log(error)
 		return
 	}
 }
 
-createWallet()
+main()

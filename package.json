@@ -1,15 +1,15 @@
 {
-  "name": "wallet",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "ethers": "^5.4.7"
-  }
+	"name": "breathtaking-batch-wallet-generator",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"keywords": [],
+	"author": "Accretence",
+	"license": "MIT",
+	"dependencies": {
+		"ethers": "^5.4.7"
+	}
 }
